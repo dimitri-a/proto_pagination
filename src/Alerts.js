@@ -25,19 +25,20 @@ export default class Alerts extends Component {
         return alertsJson
     }
 
+    //todo how to return only rows the size of pagesize
     createDateSections() {
         const sections = [
             {
                 date: '2018-10-31T23:18:31.000Z',
                 heading: 'Today',
                 title: 'blabla',
-                alerts: [{ id: 1, date: '2018-10-31T23:18:31.000Z', name: 'Joke', title: 'SUbmission ogf bla bla' }]
+                alerts: [{ id: 1, date: '2018-10-31T23:18:31.000Z', name: 'Joke', title: 'Submission ogf bla bla' }]
             },
             {
                 date: '2018-10-30T23:18:31.000Z',
                 heading: 'Yesterday',
                 title: 'blabla',
-                alerts: [{ id: 2, date: '2018-05-30T23:18:31.000Z', name: 'Mark', title: 'SUbmission cancelled' }]
+                alerts: [{ id: 2, date: '2018-05-30T23:18:31.000Z', name: 'Mark', title: 'Submission cancelled' }]
             }
         ]
         return sections
@@ -48,7 +49,7 @@ export default class Alerts extends Component {
             {this.createDateSections().map(section => {
                 return (
                     <div>{section.title} - {section.heading}
-                        {section.alerts.map(al => <Alert name={al.name}></Alert>)}
+                        {section.alerts.map(al => <Alert name={al.name} title={al.title}></Alert>)}
                     </div>)
             }
             )}
