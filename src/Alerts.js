@@ -19,12 +19,6 @@ const allAlerts  = [
 ]
 export default class Alerts extends Component {
 
-    go() {
-        const alerts = this.sortAlerts();
-        this.getPageItems(alerts);
-    }
-
-
     //give me all items for pageIndex regarding pageSize
     //this wiil return sectins with dateheader
     getAlertsForPage(pageIndex) {
@@ -36,31 +30,33 @@ export default class Alerts extends Component {
         const alerts = [
             { id: 1, date: '2018-10-31T23:18:31.000Z', name: 'Joke', title: 'this is the first 1' },
             { id: 2, date: '2018-05-31T23:18:31.000Z', name: 'Mark', title: 'this is the second one' },
-            { id: 3, date: '2018-05-29T23:18:31.000Z', name: 'John', title: 'this is the second one' },
+            { id: 3, date: '2018-05-29T23:18:31.000Z', name: 'John', title: 'this is the third one' },
         ]
 
         //todo implmenet by date desc
         // alerts =sortAlerts(alerts)
 
-        // const grouping = _.groupBy(alerts, element => element.date.substring(0, 10))
-        // const sections = _.map(grouping, (items, date) => ({
-        //     date: date,
-        //     alerts: items
-        // }));
+        //todo how to display today tomorrow etc
+        const grouping = _.groupBy(alerts, element => element.date.substring(0, 10))
+        const sections = _.map(grouping, (items, date) => ({
+            date: date,
+            heading:'todo how to display today , tomorrow etc ',
+            alerts: items
+        }));
       
 
-        const sections = [
-            {
-                date: '2018-10-31T23:18:31.000Z',
-                heading: 'today',
-                alerts: [{ id: 1, date: '2018-10-31T23:18:31.000Z', name: 'Joke', title: 'this is the first one' }]
-            },
-            {
-                date: '2018-10-30T23:18:31.000Z',
-                heading: 'Yesterday',
-                alerts: [{ id: 2, date: '2018-05-30T23:18:31.000Z', name: 'Mark', title: 'this is the second one' }]
-            }
-        ]
+        // const sections = [
+        //     {
+        //         date: '2018-10-31T23:18:31.000Z',
+        //         heading: 'today',
+        //         alerts: [{ id: 1, date: '2018-10-31T23:18:31.000Z', name: 'Joke', title: 'this is the first one' }]
+        //     },
+        //     {
+        //         date: '2018-10-30T23:18:31.000Z',
+        //         heading: 'Yesterday',
+        //         alerts: [{ id: 2, date: '2018-05-30T23:18:31.000Z', name: 'Mark', title: 'this is the second one' }]
+        //     }
+        // ]
 
         console.log('sections',sections);
 
@@ -69,11 +65,11 @@ export default class Alerts extends Component {
 
     render() {
 
-        const test = this.getPageItems(0)
+       // const test = this.getPageItems(0)
         return (<div>
             {this.getAlertsForPage(0).map(section => {
                 return (
-                    <div>{section.title} - {section.heading}
+                    <div>{section.title} heading= {section.heading}
                         {section.alerts.map(al => <Alert name={al.name} title={al.title}></Alert>)}
                     </div>)
             }
